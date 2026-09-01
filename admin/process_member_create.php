@@ -79,7 +79,7 @@ try {
 
     $pdo->commit();
 
-    $inviteLink = build_absolute_url("set_password.php?token=" . rawurlencode($token));
+    $inviteLink = build_absolute_url("login/set_password.php?token=" . rawurlencode($token));
     $fullName = trim($firstName . ' ' . $lastName);
 
     $emailSent = send_email(

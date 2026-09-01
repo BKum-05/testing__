@@ -8,7 +8,7 @@ if(empty($_SESSION['user_id'])) {
     redirect('login.php');
 }
 
-$cancelUrl = $_SERVER['HTTP_REFERER'];
+$cancelUrl = $_SERVER['HTTP_REFERER'] ?? get_dashboard_url();
 
 include_head("Confirm Logout - Online Shopping System");
 ?>

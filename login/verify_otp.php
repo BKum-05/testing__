@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../app/_auth.php';
+require_once __DIR__ . '/../includes/_auth.php';
 
 if (empty($_SESSION['pending_user'])) {
     redirect('register.php');
@@ -57,58 +57,15 @@ include_head("Verify OTP - Online Shopping System");
     </div>
 </div>
 
-<style>
-    .otp-container {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-        margin: 10px 0;
-    }
-
-    .otp-box {
-        width: 50px;
-        height: 56px;
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: 700;
-        border: 1px solid var(--border-color, #cbd5e1);
-        border-radius: 8px;
-        background-color: #fff;
-        outline: none;
-        transition: all 0.2s ease;
-        box-sizing: border-box;
-    }
-
-    .otp-box:focus {
-        border-color: var(--primary-color, #2563eb);
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-    }
-
-    #btn-verify {
-        min-width: 180px;
-        padding: 12px 24px;
-        font-size: 1rem;
-    }
-
-    @media (max-width: 480px) {
-        .otp-container {
-            gap: 6px;
-        }
-
-        .otp-box {
-            width: 42px;
-            height: 48px;
-            font-size: 1.25rem;
-        }
-    }
-</style>
-
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('otp-inputs');
-        const boxes = container.querySelectorAll('.otp-box');
         const hiddenOtp = document.getElementById('otp-full');
         const form = document.getElementById('verify-otp-form');
+        if (!container || !hiddenOtp || !form) return;
+
+        const boxes = container.querySelectorAll('.otp-box');
+        if (!boxes.length) return;
 
         function syncOtp() {
             hiddenOtp.value = Array.from(boxes).map(b => b.value).join('');
@@ -161,8 +118,10 @@ include_head("Verify OTP - Online Shopping System");
             if (hiddenOtp.value.length !== 6) {
                 e.preventDefault();
                 const alertBox = document.getElementById('otp-alert');
-                alertBox.textContent = 'Please enter all 6 digits of your verification code.';
-                alertBox.style.display = 'block';
+                if (alertBox) {
+                    alertBox.textContent = 'Please enter all 6 digits of your verification code.';
+                    alertBox.style.display = 'block';
+                }
             }
         });
     });

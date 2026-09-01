@@ -35,7 +35,7 @@ try {
         ->execute(['user_id' => $memberId]);
 
     $token = issue_password_reset_token($pdo, $memberId);
-    $resetLink = build_absolute_url('set_password.php?token=' . rawurlencode($token));
+    $resetLink = build_absolute_url('login/set_password.php?token=' . rawurlencode($token));
 
     $emailSent = send_email(
         toEmail: $target['email'],

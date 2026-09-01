@@ -39,7 +39,7 @@ try {
             ->execute(['user_id' => (int) $user['id']]);
 
         $token = issue_password_reset_token($pdo, (int) $user['id']);
-        $resetLink = build_absolute_url('set_password.php?token=' . rawurlencode($token));
+        $resetLink = build_absolute_url('login/set_password.php?token=' . rawurlencode($token));
         $fullName = trim((string) ($user['first_name'] ?? '') . ' ' . (string) ($user['last_name'] ?? '')) ?: 'Valued Customer';
 
         $emailSent = send_email(

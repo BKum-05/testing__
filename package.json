@@ -1,0 +1,10 @@
+{
+  "name": "fashion-shop-online-shopping-system",
+  "version": "1.0.0",
+  "description": "Secure Data-Driven Online Shopping Web System (BMIT2013)",
+  "scripts": {
+    "dev": "bash -c 'service mariadb status >/dev/null 2>&1 || service mariadb start; php -S 0.0.0.0:3000 router.php'",
+    "start": "bash -c 'service mariadb status >/dev/null 2>&1 || service mariadb start; php -S 0.0.0.0:3000 router.php'",
+    "build": "echo Build complete"
+  }
+}

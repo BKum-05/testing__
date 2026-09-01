@@ -1,0 +1,8 @@
+{
+  "name": "Fashion Shop - Online Shopping Web System",
+  "description": "Secure account security, user profile management, and member maintenance web system built with PHP 8.2, PDO, and MySQL for BMIT2013.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
