@@ -26,7 +26,7 @@ include_head("Forgot Password - Online Shopping System");
         <?php 
         // Cloudflare Turnstile
         html_cloudflare($cloudflareToken);        
-        html_button('submit', 'Send Reset Link', 'class="btn-primary"');
+        html_button('submit', 'Send Reset Link', 'class="btn btn-primary"');
         ?>
     </form>
 

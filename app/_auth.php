@@ -49,6 +49,23 @@ function get_pdo(): PDO
     return $pdo;
 }
 
+
+$dob = req('date_of_birth');
+
+
+$d = new DateTime('today');
+$max = $d->modify('-13 years')->format('Y-m-d');
+$min = $d->modify('-120 years')->format('Y-m-d');
+
+// Validate: date
+if ($dob == '') {
+    $_err['date'] = 'Required';
+} else if (!is_date($dob)) {
+    $_err['date'] = 'Invalid date';
+} else if ($dob < $min || $dob > $max) {
+    $_err['date'] = "Must between $min to $max";
+}
+
 // ============================================================================
 // MARK: Security
 // ============================================================================

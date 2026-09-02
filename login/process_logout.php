@@ -14,4 +14,4 @@ if (!verify_csrf($csrfToken)) {
 perform_logout();
 
 temp('flash_success', 'You have been logged out successfully.');
-redirect('login.php');
+redirect('index.php');

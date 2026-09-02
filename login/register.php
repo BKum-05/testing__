@@ -69,12 +69,9 @@ include_head("Register - Online Shopping System");
                 <label for="gender">Gender</label>
                 <?php html_select('gender', $genderOptions, null); ?>
             </div>
-            <div class="form-group">
+            <div class="form-group" novalidate>
                 <label for="date_of_birth">Date of Birth *</label>
                 <?php
-                $max = date('Y-m-d', strtotime('-13 years'));
-                $min = date('Y-m-d', strtotime('-120 years'));
-
                 html_date('date_of_birth', 'class="form-control" min="' . $min . '" max="' . $max . '" required');
                 err('date_of_birth');
                 ?>
@@ -111,11 +108,13 @@ include_head("Register - Online Shopping System");
         <?php
         // Cloudflare Turnstile CAPTCHA
         html_cloudflare($cloudflareToken);
-        html_button('submit', 'Register', 'class="btn-primary"');
+        html_button('submit', 'Register', 'class="btn btn-primary"');
         ?>
     </form>
 
     <p class="subtitle" style="margin-top: 15px;">Already have an account? <a href="login.php">Login here</a></p>
 </div>
 
-<?php include_foot(); ?>
+<?php
+
+include_foot(); ?>

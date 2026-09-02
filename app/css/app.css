@@ -47,56 +47,22 @@ body {
 #app-content {
     min-height: 100vh;
     display: grid;
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
     background: var(--color-bg);
 }
 
-header,
-footer {
-    padding: 10px 50px;
-    background: var(--color-header);
-}
+/* Header and nav styles are defined in account.css */
 
-header h1 {
-    margin: 0;
-    padding-left: 40px;
-    background: url(../images/favicon.png) no-repeat left / 36px;
-}
-
-header a {
-    color: inherit;
-    text-decoration: none;
-}
-
-
-nav {
-    padding: 0 50px;
-    background: var(--color-header);
-    display: flex;
-    gap: 8px;
-}
-
-nav a {
-    padding: 5px 10px;
-    color: var(--color-bg);
-    background: var(--color-btn);
-    text-decoration: none;
-    white-space: nowrap;
-    border: none;
-    border-radius: 2px;
-}
-
-nav a:hover {
-    background: var(--color-accent);
-}
-
-main {
-    padding: 5px 10px;
+main.page-body {
+    padding: 24px 16px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    background: var(--color-bg);
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 main h1 {

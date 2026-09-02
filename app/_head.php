@@ -22,7 +22,8 @@ $userAvatar = function_exists('get_avatar_url') ? get_avatar_url($currentUser['a
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($_title ?? $page_title ?? 'Fashion Shop - Online Shopping System', ENT_QUOTES, 'UTF-8') ?></title>
     <link rel="shortcut icon" href="<?= url('uploads/avatar/default.svg') ?>">
-    <link rel="stylesheet" href="<?= url('css/style.css') ?>">
+    <link rel="stylesheet" href="<?= url('app/css/app.css') ?>">
+    <link rel="stylesheet" href="<?= url('app/css/account.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         window.BASE_URL = <?= json_encode(defined('BASE_URL') ? BASE_URL : '') ?>;
@@ -36,12 +37,13 @@ $userAvatar = function_exists('get_avatar_url') ? get_avatar_url($currentUser['a
         }, true);
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="<?= url('js/app.js') ?>"></script>
+    <script src="<?= url('app/js/app.js') ?>"></script>
+    <script src="<?= url('app/js/account.js') ?>"></script>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-    <div id="app-content">
+    <div id="app-content"> <!-- (for accessibility) -->
         <header class="main-header">
             <div class="header-inner">
                 <div class="logo-area">

@@ -83,7 +83,7 @@ include_head("Login - Online Shopping System");
 
         <?php
         html_cloudflare($cloudflareToken);
-        html_button('submit', 'Sign In', 'class="btn-primary"');
+        html_button('submit', 'Sign In', 'class="btn btn-primary"');
         ?>
     </form>
 

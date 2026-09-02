@@ -60,9 +60,12 @@ include_head("Add Member - Online Shopping System");
                 <label for="gender">Gender</label>
                 <?php html_select('gender', $genderOptions, null); ?>
             </div>
-            <div class="form-group">
+            <div class="form-group" novalidate>
                 <label for="date_of_birth">Date of Birth *</label>
-                <?php html_text('date_of_birth', 'class="date-mask" placeholder="dd/mm/yyyy" inputmode="numeric" maxlength="10" pattern="\d{2}/\d{2}/\d{4}" autocomplete="off" required'); ?>
+                <?php
+                html_date('date_of_birth', 'class="form-control" min="' . $min . '" max="' . $max . '" required');
+                err('date_of_birth');
+                ?>
             </div>
             <div class="form-group">
                 <label for="phone_number">Phone Number *</label>

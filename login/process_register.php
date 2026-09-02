@@ -178,3 +178,9 @@ if (req('ajax')) {
 }
 
 redirect('verify_otp.php');
+
+
+
+
+
+

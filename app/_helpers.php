@@ -13,6 +13,14 @@ if (basename($_SERVER['PHP_SELF']) === basename(__FILE__)) {
 }
 
 if (session_status() === PHP_SESSION_NONE) {
+    session_set_cookie_params([
+        'lifetime' => 0,
+        'path' => '/',
+        'domain' => '',
+        'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+        'httponly' => true,
+        'samesite' => 'Lax',
+    ]);
     session_start();
 }
 
@@ -81,6 +89,14 @@ function req(string $key, mixed $default = null): mixed
     $value = $_REQUEST[$key] ?? $default;
     return is_array($value) ? array_map('trim', $value) : (is_string($value) ? trim($value) : $value);
 }
+
+
+// Is date?
+function is_date($value, $format = 'Y-m-d') {
+    $d = DateTime::createFromFormat($format, $value);
+    return $d && $d->format($format) == $value;
+}
+
 
 /**
  * Filesystem path to the project root (one level up from /includes),
@@ -408,11 +424,14 @@ function perform_logout(): void
         setcookie(
             session_name(),
             '',
-            time() - 42000,
-            $params['path'],
-            $params['domain'],
-            $params['secure'],
-            $params['httponly']
+            [
+                'expires' => time() - 42000,
+                'path' => $params['path'],
+                'domain' => $params['domain'],
+                'secure' => $params['secure'],
+                'httponly' => $params['httponly'],
+                'samesite' => 'Lax',
+            ]
         );
     }
 

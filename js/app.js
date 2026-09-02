@@ -6,6 +6,12 @@
 // Global state for location data
 window.locationData = window.locationData || {};
 
+function appUrl(path) {
+    var normalizedPath = String(path || '').replace(/^\/+/, '');
+    var base = (window.BASE_URL || '').replace(/\/+$/, '');
+    return (base ? (base + '/') : '/') + normalizedPath;
+}
+
 // Helper to safely reset Turnstile captcha
 function safeResetTurnstile() {
     if (typeof window.turnstile !== 'undefined' && window.turnstile && typeof window.turnstile.reset === 'function') {
@@ -50,7 +56,7 @@ function handleGoogleSignIn(response) {
     }
 
     $.ajax({
-        url: 'process_google_auth.php',
+        url: appUrl('login/process_google_auth.php'),
         type: 'POST',
         data: {
             token: response.credential,
@@ -60,7 +66,7 @@ function handleGoogleSignIn(response) {
     })
     .done(function (res) {
         if (res && res.success) {
-            window.location.href = res.redirect_url || (window.BASE_URL ? window.BASE_URL + '/member/profile.php' : '../member/profile.php');
+            window.location.href = res.redirect_url || appUrl('member/profile.php');
         } else {
             showAlert('Google Sign-In failed: ' + ((res && res.message) ? res.message : 'Unknown error'));
         }
@@ -232,7 +238,7 @@ $(function () {
 
         function loadLocationData() {
             var baseUrl = (window.BASE_URL || '').replace(/\/+$/, '');
-            var jsonUrl = baseUrl ? (baseUrl + '/malaysia.json') : 'malaysia.json';
+            var jsonUrl = baseUrl ? (baseUrl + '/malaysia.json') : '/malaysia.json';
 
             $.ajax({
                 url: jsonUrl,
@@ -245,7 +251,7 @@ $(function () {
             })
             .fail(function () {
                 // Fallback to root relative
-                $.getJSON('malaysia.json', function (response) {
+                $.getJSON('/malaysia.json', function (response) {
                     window.locationData = normalizeLocationData(response);
                     populateStates();
                 });
